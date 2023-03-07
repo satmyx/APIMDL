@@ -5,11 +5,12 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 class TestDbConnectionController extends AbstractController
 {
     #[Route('/test/db/connection', name: 'app_test_db_connection')]
-    public function index(): Response
+    public function index(EntityManagerInterface $em): Response
     {
         
         $em = $this->getDoctrine()->getManager();
