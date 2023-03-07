@@ -13,7 +13,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     collectionOperations: ['get' => ['normalization_context' => ['groups' => 'licencie:list']]],
     itemOperations: ['get' => ['normalization_context' => ['groups' => 'licencie:item']]],
-    order: ['createdAt' => 'DESC'],
     paginationEnabled: false,
 )]
 
@@ -65,7 +64,7 @@ class Licencie
     #[Groups(['licencie:list', 'licencie:item'])]
     private $mail;
     
-    #[ORM\Column(name: "DATEADHESION", type: "date", nullable: false)]
+    #[ORM\Column(name: "DATEADHESION", type: "datetime", nullable: false)]
     #[Groups(['licencie:list', 'licencie:item'])]
     private $dateadhesion;
 
