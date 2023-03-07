@@ -4,6 +4,17 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use App\Repository\ClubRepository;
+
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+
+#[ApiResource(
+    collectionOperations: ['get' => ['normalization_context' => ['groups' => 'club:list']]],
+    itemOperations: ['get' => ['normalization_context' => ['groups' => 'club:item']]],
+    paginationEnabled: false,
+)]
+
 #[ORM\Table(name: "CLUB")]
 #[ORM\Entity(repositoryClass: ClubRepository::class)]
 class Club
@@ -12,24 +23,31 @@ class Club
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: "SEQUENCE")]
     #[ORM\SequenceGenerator(sequenceName: "CLUB_ID_seq", allocationSize: 1, initialValue: 1)]
+    #[Groups(['club:list', 'club:item'])]
     private $id;
 
     #[ORM\Column(name: "NOM", type: "string", length: 50, nullable: false)]
+    #[Groups(['club:list', 'club:item'])]
     private $nom;
 
     #[ORM\Column(name: "ADRESSE1", type: "string", length: 60, nullable: false)]
+    #[Groups(['club:list', 'club:item'])]
     private $adresse1;
 
     #[ORM\Column(name: "ADRESSE2", type: "string", length: 60, nullable: true)]
+    #[Groups(['club:list', 'club:item'])]
     private $adresse2;
 
     #[ORM\Column(name: "CP", type: "string", length: 5, nullable: false, options: ["fixed" => true])]
+    #[Groups(['club:list', 'club:item'])]
     private $cp;
 
     #[ORM\Column(name: "VILLE", type: "string", length: 60, nullable: false)]
+    #[Groups(['club:list', 'club:item'])]
     private $ville;
 
     #[ORM\Column(name: "TEL", type: "string", length: 14, nullable: false, options: ["fixed" => true])]
+    #[Groups(['club:list', 'club:item'])]
     private $tel;
 
     public function getId(): ?int
