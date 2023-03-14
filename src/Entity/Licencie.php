@@ -27,7 +27,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         'prenom' => 'exact',
         'adresse1' => 'exact',
         'adresse2' => 'exact',
-        'cp' => 'exact',
+        'cp' => 'start',
         'ville' => 'exact',
         'tel' => 'exact',
         'mail' => 'exact',
@@ -37,7 +37,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
         
     ]
 )]
-
     
 #[ORM\Table(name: "LICENCIE")]
 #[UniqueConstraint(name: "uq_club", columns: ["NUMLICENCE"])]
